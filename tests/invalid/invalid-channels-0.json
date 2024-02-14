@@ -1,0 +1,19 @@
+{
+    "testinfo": {
+        "description": "Zero channels",
+        "notes": "QuickTime Player 10.5 can't play this file."
+    },
+    "result": "invalid",
+    "format": "au",
+    "sampleRate": 44100,
+    "channels": 0,
+    "codec": "pcm_bei",
+    "sampleSize": 8,
+    "samplesPerChannel": 0,
+    "startSamples": [
+        [ ]
+    ],
+    "endSamples": [
+        [ ]
+    ]
+}

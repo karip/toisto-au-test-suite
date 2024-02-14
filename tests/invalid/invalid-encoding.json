@@ -1,0 +1,19 @@
+{
+    "testinfo": {
+        "description": "Invalid encoding value: 0x0BADBADE",
+        "notes": "QuickTime Player 10.5 can't play this file."
+    },
+    "result": "invalid",
+    "format": "au",
+    "sampleRate": 44100,
+    "channels": 1,
+    "codec": "195934942",
+    "sampleSize": 0,
+    "samplesPerChannel": 4411,
+    "startSamples": [
+        [ ]
+    ],
+    "endSamples": [
+        [ ]
+    ]
+}

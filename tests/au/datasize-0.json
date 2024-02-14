@@ -1,0 +1,17 @@
+{
+    "testinfo": {
+        "description": "Audio data size set to 0 - no samples"
+    },
+    "format": "au",
+    "sampleRate": 44100,
+    "channels": 1,
+    "codec": "pcm_bei",
+    "sampleSize": 8,
+    "samplesPerChannel": 0,
+    "startSamples": [
+        [ ]
+    ],
+    "endSamples": [
+        [ ]
+    ]
+}

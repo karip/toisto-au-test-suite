@@ -1,0 +1,25 @@
+{
+    "testinfo": {
+        "description": "Invalid file without enough audio data for four channels",
+        "notes": "QuickTime Player 10.5 can't play this file."
+    },
+    "result": "invalid",
+    "format": "au",
+    "sampleRate": 44100,
+    "channels": 4,
+    "codec": "pcm_bei",
+    "sampleSize": 8,
+    "samplesPerChannel": 1,
+    "startSamples": [
+        [ 10 ],
+        [ 0 ],
+        [ 0 ],
+        [ 0 ]
+    ],
+    "endSamples": [
+        [ 10 ],
+        [ 0 ],
+        [ 0 ],
+        [ 0 ]
+    ]
+}

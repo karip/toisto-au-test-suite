@@ -1,0 +1,17 @@
+{
+    "testinfo": {
+        "description": "Sample rate 1 Hz"
+    },
+    "format": "au",
+    "sampleRate": 1,
+    "channels": 1,
+    "codec": "pcm_bei",
+    "sampleSize": 8,
+    "samplesPerChannel": 8,
+    "startSamples": [
+        [ 10, 10, 10, 10, 10, 10, 10, 10 ]
+    ],
+    "endSamples": [
+        [ 10, 10, 10, 10, 10, 10, 10, 10 ]
+    ]
+}
