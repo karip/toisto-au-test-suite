@@ -96,7 +96,7 @@ for each channel. The range of values depends on `sampleSize`:
 
 ## References
 
- - [The 'spec': Oracle Solaris AU man page](https://docs.oracle.com/cd/E36784_01/html/E36882/au-4.html)
+ - [The "spec": Oracle Solaris AU man page](https://docs.oracle.com/cd/E36784_01/html/E36882/au-4.html)
  - [Oracle Solaris audioconvert](https://docs.oracle.com/cd/E36784_01/html/E36870/audioconvert-1.html)
  - [Audio File Formats FAQ: File Formats](https://web.archive.org/web/20230223152815/https://sox.sourceforge.net/AudioFormats-11.html#ss11.2)
  - [NeXT soundstruct.h](https://github.com/johnsonjh/NeXTDSP/blob/26d2b31a6fb4bc16d55ebe17824cd2d6f9edfc7b/sound-33/soundstruct.h#L4)
