@@ -3,7 +3,7 @@
         "description": "Sample rate 2900000 Hz"
     },
     "format": "au",
-    "sampleRate": 2.9e+06,
+    "sampleRate": 2900000,
     "channels": 1,
     "codec": "pcm_bei",
     "sampleSize": 8,
