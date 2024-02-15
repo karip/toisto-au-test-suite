@@ -99,6 +99,9 @@ FAIL: tests/exported/audioconvert-g723.3.au
 
 OK  : tests/exported/audioconvert-i16.au
 OK  : tests/exported/audioconvert-ulaw.au
+OK  : tests/exported/ffmpeg-desc.au
+ - unsupported: desc
+
 OK  : tests/exported/ffmpeg-i16.au
 OK  : tests/exported/python3-i16.au
 OK  : tests/exported/python3-i24.au
@@ -168,13 +171,12 @@ OK  : tests/exported/quicktime7-i8.au
 (OK): tests/invalid/invalid-offset-5-with-garbage.au
 (OK): tests/invalid/invalid-offset-8.au
 (OK): tests/invalid/invalid-offset-80000000.au
+(OK): tests/invalid/invalid-offset-after-end.au
 
-(FAIL): tests/invalid/invalid-offset-after-end.au
- - values differ for "startSamples", channel 0, index 8, got: -123, expected: 0
- - values differ for "endSamples", channel 0, index 0, got: -1, expected: 0
+(FAIL): tests/invalid/invalid-offset-ffffffff.au
+ - values differ for "startSamples", channel 0, index 8, got: 17, expected: 0
+ - values differ for "endSamples", channel 0, index 0, got: 105, expected: 0
 
-(OK): tests/invalid/invalid-offset-ffffffff.au
-
-Total 82: 65 passed, 17 failed, 21 invalid, 0 ignored.
+Total 83: 66 passed, 17 failed, 21 invalid, 0 ignored.
 
 ~~~
