@@ -1,11 +1,11 @@
 {
     "testinfo": {
         "description": "ffmpeg exported description field",
-        "notes": "ffmpeg stores UTF-8 data to the description field.",
+        "notes": "ffmpeg stores UTF-8 metadata to the description field.",
         "software": "ffmpeg",
         "version": "4.4.2",
         "platform": "Ubuntu 22.04",
-        "command": "ffmpeg -i file-with-id3-data.aiff tests/exported/ffmpeg-desc.au"
+        "command": "ffmpeg -i tests/au/channels-2-bei16.au  -metadata title='My 🙂 Track Title' -metadata artist='My äö Artist Name' -metadata album='My テスト Album Title' -metadata track='1' -metadata genre='Instrumental' tests/exported/ffmpeg-desc.au"
     },
     "format": "au",
     "sampleRate": 44100,
