@@ -16,10 +16,10 @@ and python sunau is available in Python versions less than 3.13.
     clang++ ... # see audiotoolbox-au-tester.mm for compilation instructions
     cd ..
     python3 toisto-runner.py -v tools/audiotoolbox-au-tester
-    # Total 83: 66 passed, 17 failed, 21 invalid, 0 ignored.
+    # Total 84: 66 passed, 18 failed, 21 invalid, 0 ignored.
 
     python3 toisto-runner.py -v tools/python3-au-tester.py
-    # Total 83: 61 passed, 22 failed, 21 invalid, 0 ignored.
+    # Total 84: 61 passed, 23 failed, 21 invalid, 0 ignored.
 
 [The results for macOS 14.3 AudioToolBox](result-audiotoolbox-au-tester.md)
 running audiotoolbox-au-tester.

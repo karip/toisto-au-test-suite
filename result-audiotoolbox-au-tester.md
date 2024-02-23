@@ -47,6 +47,10 @@ FAIL: tests/au/encoding-23-g721.au
 * ERROR: can't open file: tests/au/encoding-23-g721.au (fmt?)
  - process returned non-zero exit status: 255
 
+FAIL: tests/au/encoding-24-g722.au
+* ERROR: can't open file: tests/au/encoding-24-g722.au (fmt?)
+ - process returned non-zero exit status: 255
+
 FAIL: tests/au/encoding-25-g723.3.au
 * ERROR: can't open file: tests/au/encoding-25-g723.3.au (fmt?)
  - process returned non-zero exit status: 255
@@ -172,11 +176,8 @@ OK  : tests/exported/quicktime7-i8.au
 (OK): tests/invalid/invalid-offset-8.au
 (OK): tests/invalid/invalid-offset-80000000.au
 (OK): tests/invalid/invalid-offset-after-end.au
+(OK): tests/invalid/invalid-offset-ffffffff.au
 
-(FAIL): tests/invalid/invalid-offset-ffffffff.au
- - values differ for "startSamples", channel 0, index 8, got: 17, expected: 0
- - values differ for "endSamples", channel 0, index 0, got: 105, expected: 0
-
-Total 83: 66 passed, 17 failed, 21 invalid, 0 ignored.
+Total 84: 66 passed, 18 failed, 21 invalid, 0 ignored.
 
 ~~~
