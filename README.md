@@ -16,10 +16,10 @@ and python sunau is available in Python versions less than 3.13.
     clang++ ... # see audiotoolbox-au-tester.mm for compilation instructions
     cd ..
     python3 toisto-runner.py -v tools/audiotoolbox-au-tester
-    # Total 84: 66 passed, 18 failed, 21 invalid, 0 ignored.
+    # Total 89: 71 passed, 18 failed, 21 invalid, 0 ignored.
 
     python3 toisto-runner.py -v tools/python3-au-tester.py
-    # Total 84: 61 passed, 23 failed, 21 invalid, 0 ignored.
+    # Total 89: 64 passed, 25 failed, 21 invalid, 0 ignored.
 
 [The results for macOS 14.3 AudioToolBox](result-audiotoolbox-au-tester.md)
 running audiotoolbox-au-tester.
@@ -97,9 +97,11 @@ for each channel. The range of values depends on `sampleSize`:
 ## References
 
  - [The "spec": Oracle Solaris AU man page](https://docs.oracle.com/cd/E36784_01/html/E36882/au-4.html)
- - [Oracle Solaris audioconvert](https://docs.oracle.com/cd/E36784_01/html/E36870/audioconvert-1.html)
+ - [Oracle Solaris audioconvert man page](https://docs.oracle.com/cd/E36784_01/html/E36870/audioconvert-1.html)
+ - [NextSTEP sndconvert man page](http://miros.polarhome.com/service/man/?qf=sndconvert&tf=2&of=NeXTSTEP&sf=1)
  - [Audio File Formats FAQ: File Formats](https://web.archive.org/web/20230223152815/https://sox.sourceforge.net/AudioFormats-11.html#ss11.2)
  - [NeXT soundstruct.h](https://github.com/johnsonjh/NeXTDSP/blob/26d2b31a6fb4bc16d55ebe17824cd2d6f9edfc7b/sound-33/soundstruct.h#L4)
+ - [SunOS audio_filehdr.h](https://github.com/Arquivotheca/SunOS-4.1.3/blob/413/demo/SOUND/multimedia/audio_filehdr.h)
  - [NeXT/Sun soundfile format](http://soundfile.sapp.org/doc/NextFormat/)
  - [Apple AudioToolBox framework](https://developer.apple.com/documentation/audiotoolbox/)
  - [Python3 sunau module](https://docs.python.org/3/library/sunau.html)

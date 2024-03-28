@@ -132,6 +132,11 @@ FAIL: tests/exported/quicktime5-ulaw.au
  - values differ for "sampleRate", got: '44100', expected: '4294945860'
 
 OK  : tests/exported/quicktime7-i8.au
+OK  : tests/exported/sndconvert-double.au
+OK  : tests/exported/sndconvert-float.au
+OK  : tests/exported/sndconvert-linear-16.au
+OK  : tests/exported/sndconvert-linear-8.au
+OK  : tests/exported/sndconvert-mulaw.au
 
 (FAIL): tests/invalid/invalid-channels-0.au
 * ERROR: can't open file: tests/invalid/invalid-channels-0.au (fmt?)
@@ -178,6 +183,6 @@ OK  : tests/exported/quicktime7-i8.au
 (OK): tests/invalid/invalid-offset-after-end.au
 (OK): tests/invalid/invalid-offset-ffffffff.au
 
-Total 84: 66 passed, 18 failed, 21 invalid, 0 ignored.
+Total 89: 71 passed, 18 failed, 21 invalid, 0 ignored.
 
 ~~~
