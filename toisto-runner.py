@@ -11,7 +11,7 @@ import sys
 import os
 import subprocess
 
-build_version = "0.24.208.0"
+build_version = "0.24.403.0"
 
 def run_command(command, filename, verbose):
     cmd = " ".join(command) + " " + filename
@@ -86,7 +86,8 @@ def print_verbose(verbose, msg):
 
 args = {
     "verbose": 0,
-    "override": "",
+    "override_folder": "",
+    "override_list": { "ignore": [] },
     "command": []
 }
 findex = 1
@@ -98,7 +99,15 @@ while findex < len(sys.argv):
         args["verbose"] = sys.argv[findex].count("v")
         findex += 1
     elif sys.argv[findex] == "-o":
-        args["override"] = sys.argv[findex+1]
+        args["override_folder"] = sys.argv[findex+1]
+        findex += 2
+    elif sys.argv[findex] == "-g":
+        try:
+            with open(sys.argv[findex+1], 'r') as f:
+                args["override_list"] = json.loads(f.read())
+        except:
+            print("ERROR: INVALID OVERRIDE LIST:", sys.argv[findex+1])
+            raise
         findex += 2
     elif sys.argv[findex] == "-i":
         args["input_folder"] = sys.argv[findex+1]
@@ -109,11 +118,12 @@ while findex < len(sys.argv):
             findex += 1
 
 if len(args["command"]) == 0:
-    print("Usage: toisto-runner.py [-v] [-vv] [-i input_folder] [-o override_folder] -s file_suffix command...")
+    print("Usage: toisto-runner.py [-v] [-vv] [-i input_folder] [-o override_folder] [-g override-list.json] -s file_suffix command...")
     print(" -v          verbose mode")
     print(" -vv         more verbose mode")
     print(" -i          input folder (default tests)")
     print(" -o          override folder for JSON files (default none)")
+    print(" -l          override list file (default none)")
     print(" command...  command and its args to run")
     exit(-1)
 
@@ -160,7 +170,7 @@ for test_filename in filenames:
         continue
 
     # read ref file or override ref file
-    override_json_filename = args["override"]+"/"+json_filename
+    override_json_filename = args["override_folder"]+"/"+json_filename
     if os.path.exists(override_json_filename):
         f = open(override_json_filename, "r")
     else:
@@ -172,6 +182,9 @@ for test_filename in filenames:
         print("ERROR: INVALID JSON IN REF FILE:", json_filename)
         print(refcontents)
         raise
+
+    if test_filename in args["override_list"]["ignore"]:
+        testref["result"] = "ignore"
 
     ignored_test = False
     if "result" in testref and (testref["result"] == "invalid" or testref["result"] == "ignore"):
