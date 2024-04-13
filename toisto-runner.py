@@ -11,7 +11,7 @@ import sys
 import os
 import subprocess
 
-build_version = "0.24.403.0"
+build_version = "0.24.413.0"
 
 def run_command(command, filename, verbose):
     cmd = " ".join(command) + " " + filename
@@ -82,13 +82,24 @@ def print_verbose(verbose, msg):
     if verbose > 0:
         print(msg)
 
+def red(text):
+    if args["colors"]:
+        return '\033[31m' + text + '\033[0m'
+    return text
+
+def red_if_non_zero(count, text):
+    if args["colors"] and count > 0:
+        return '\033[31m' + str(count) + text + '\033[0m'
+    return str(count) + text
+
 # main
 
 args = {
     "verbose": 0,
     "override_folder": "",
-    "override_list": { "ignore": [] },
-    "command": []
+    "override_list": {},
+    "command": [],
+    "colors": False
 }
 findex = 1
 while findex < len(sys.argv):
@@ -98,10 +109,13 @@ while findex < len(sys.argv):
     if sys.argv[findex].startswith("-v"):
         args["verbose"] = sys.argv[findex].count("v")
         findex += 1
-    elif sys.argv[findex] == "-o":
+    if sys.argv[findex].startswith("-c"):
+        args["colors"] = True
+        findex += 1
+    elif sys.argv[findex] == "--override-folder":
         args["override_folder"] = sys.argv[findex+1]
         findex += 2
-    elif sys.argv[findex] == "-g":
+    elif sys.argv[findex] == "--override-list":
         try:
             with open(sys.argv[findex+1], 'r') as f:
                 args["override_list"] = json.loads(f.read())
@@ -118,14 +132,19 @@ while findex < len(sys.argv):
             findex += 1
 
 if len(args["command"]) == 0:
-    print("Usage: toisto-runner.py [-v] [-vv] [-i input_folder] [-o override_folder] [-g override-list.json] -s file_suffix command...")
-    print(" -v          verbose mode")
-    print(" -vv         more verbose mode")
-    print(" -i          input folder (default tests)")
-    print(" -o          override folder for JSON files (default none)")
-    print(" -l          override list file (default none)")
-    print(" command...  command and its args to run")
+    print("Usage: toisto-runner.py [-v] [-vv] [-i input_folder] [--override-folder override_folder] [--override-list override-list.json] command...")
+    print(" -v                  verbose mode")
+    print(" -vv                 more verbose mode")
+    print(" -i                  input folder (default tests)")
+    print(" -c                  enable color mode")
+    print(" --override-folder   override folder for JSON files (default none)")
+    print(" --override-list     override list file (default none)")
+    print(" command...          command and its args to run")
     exit(-1)
+
+if args["colors"]:
+    # hack to enable colors on windows 10 until https://github.com/python/cpython/issues/84315
+    os.system("")
 
 print("Testing command: " + args["command"][0])
 if not os.path.exists(args["command"][0]):
@@ -183,8 +202,8 @@ for test_filename in filenames:
         print(refcontents)
         raise
 
-    if test_filename in args["override_list"]["ignore"]:
-        testref["result"] = "ignore"
+    if test_filename in args["override_list"]:
+        testref.update(args["override_list"][test_filename])
 
     ignored_test = False
     if "result" in testref and (testref["result"] == "invalid" or testref["result"] == "ignore"):
@@ -197,7 +216,7 @@ for test_filename in filenames:
             print_verbose(args["verbose"], "\n(FAIL): "+test_filename)
             count[testref["result"]] += 1
         else:
-            print_verbose(args["verbose"], "\nFAIL: "+test_filename)
+            print_verbose(args["verbose"], red("\nFAIL  : ")+test_filename)
             count["fail"] += 1
         if len(cmderror) > 0:
             print_verbose(args["verbose"], cmderror.decode("utf-8").strip())
@@ -256,7 +275,7 @@ for test_filename in filenames:
             print_verbose(args["verbose"], "\n(FAIL): "+test_filename)
             count[testref["result"]] += 1
         else:
-            print_verbose(args["verbose"], "\nFAIL: "+test_filename)
+            print_verbose(args["verbose"], red("\nFAIL  : ")+test_filename)
             count["fail"] += 1
         needs_linefeed_before_ok = True
     else:
@@ -264,10 +283,10 @@ for test_filename in filenames:
             print_verbose(args["verbose"], "")
         needs_linefeed_before_ok = False
         if ignored_test:
-            print_verbose(args["verbose"], "(OK): "+test_filename)
+            print_verbose(args["verbose"], "(OK)  : "+test_filename)
             count[testref["result"]] += 1
         else:
-            print_verbose(args["verbose"], "OK  : "+test_filename)
+            print_verbose(args["verbose"], "OK    : "+test_filename)
 
     if len(cmderror) > 0:
         print(cmderror.decode("utf-8").strip())
@@ -282,8 +301,9 @@ for test_filename in filenames:
 # print totals
 
 print_verbose(args["verbose"], "")
-print("Total " + str(totalcount) + ": " + str(totalcount-count["fail"]) +  " passed, " +
-    str(count["fail"]) +  " failed, " + str(count["invalid"]) +  " invalid, " +
+print("Total " + str(totalcount) + ": " +
+    str(totalcount-count["fail"]-count["invalid"]-count["ignore"]) +  " passed, " +
+    red_if_non_zero(count["fail"], " failed") + ", " + str(count["invalid"]) +  " invalid, " +
     str(count["ignore"]) +  " ignored.")
 
 if count["fail"] > 0:
