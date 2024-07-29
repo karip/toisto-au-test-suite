@@ -1,4 +1,4 @@
-# Toisto Runner for the test suite
+# Toisto Runner for Toisto test suites
 #
 # Calls command for each test file under the tests folder and compares its
 # output to the test file's json file.
@@ -11,7 +11,7 @@ import sys
 import os
 import subprocess
 
-build_version = "0.24.413.0"
+build_version = "0.24.729.0"
 
 def run_command(command, filename, verbose):
     cmd = " ".join(command) + " " + filename
@@ -80,7 +80,10 @@ def compare_samples(testref, testresult, fieldname, tolerance, errors):
 
 def print_verbose(verbose, msg):
     if verbose > 0:
-        print(msg)
+        try:
+            print(msg)
+        except UnicodeEncodeError:
+            print(msg.encode("utf-8", "ignore"))
 
 def red(text):
     if args["colors"]:
@@ -147,7 +150,11 @@ if args["colors"]:
     os.system("")
 
 print("Testing command: " + args["command"][0])
-if not os.path.exists(args["command"][0]):
+
+# convert command to Windows or Unix format (to use forward or backward slashes)
+args["command"][0] = os.path.join(*args["command"][0].split("/"))
+
+if not os.path.exists(args["command"][0]) and not os.path.exists(args["command"][0]+".exe"):
     print("ERROR: Command does not exist!")
     exit(-1)
 
@@ -191,10 +198,10 @@ for test_filename in filenames:
     # read ref file or override ref file
     override_json_filename = args["override_folder"]+"/"+json_filename
     if os.path.exists(override_json_filename):
-        f = open(override_json_filename, "r")
+        f = open(override_json_filename, "rb")
     else:
-        f = open(json_filename, "r")
-    refcontents = f.read()
+        f = open(json_filename, "rb")
+    refcontents = f.read().decode("utf-8")
     try:
         testref = json.loads(refcontents)
     except:
@@ -303,8 +310,7 @@ for test_filename in filenames:
 print_verbose(args["verbose"], "")
 print("Total " + str(totalcount) + ": " +
     str(totalcount-count["fail"]-count["invalid"]-count["ignore"]) +  " passed, " +
-    red_if_non_zero(count["fail"], " failed") + ", " + str(count["invalid"]) +  " invalid, " +
-    str(count["ignore"]) +  " ignored.")
+    red_if_non_zero(count["fail"], " failed") + ", " + str(count["invalid"]+count["ignore"]) + " ignored.")
 
 if count["fail"] > 0:
     exit(1)
