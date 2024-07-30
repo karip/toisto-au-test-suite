@@ -3,7 +3,7 @@
         "description": "Extra garbage data after the audio data",
         "notes": "QuickTime Player 10.5 can play this file."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 1,

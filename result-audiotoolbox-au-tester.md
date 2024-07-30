@@ -183,6 +183,6 @@ OK    : tests/exported/sndconvert-mulaw.au
 (OK)  : tests/invalid/invalid-offset-after-end.au
 (OK)  : tests/invalid/invalid-offset-ffffffff.au
 
-Total 89: 50 passed, 18 failed, 21 invalid, 0 ignored.
+Total 89: 50 passed, 18 failed, 21 ignored.
 
 ~~~

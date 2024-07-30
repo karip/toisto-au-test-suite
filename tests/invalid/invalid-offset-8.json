@@ -3,7 +3,7 @@
         "description": "Invalid offset with value 8",
         "notes": "The 'spec' doesn't prevent offset 8, but it's assumed to be invalid. QuickTime Player 10.5 can play this file. audioconvert can't open this file."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 1,

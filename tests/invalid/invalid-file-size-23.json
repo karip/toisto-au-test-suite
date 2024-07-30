@@ -3,7 +3,7 @@
         "description": "File and header size too small: 23 bytes",
         "notes": "QuickTime Player 10.5 can't play this file. audioconvert can't handle this file."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 1,

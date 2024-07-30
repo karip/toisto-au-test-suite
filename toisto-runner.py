@@ -11,7 +11,7 @@ import sys
 import os
 import subprocess
 
-build_version = "0.24.729.0"
+build_version = "0.24.730.0"
 
 def run_command(command, filename, verbose):
     cmd = " ".join(command) + " " + filename
@@ -179,8 +179,7 @@ filenames.sort()
 totalcount = 0
 count = {
     "fail": 0,
-    "ignore": 0,
-    "invalid": 0
+    "ignore": 0
 }
 needs_linefeed_before_ok = False
 
@@ -213,7 +212,7 @@ for test_filename in filenames:
         testref.update(args["override_list"][test_filename])
 
     ignored_test = False
-    if "result" in testref and (testref["result"] == "invalid" or testref["result"] == "ignore"):
+    if "result" in testref and testref["result"] == "ignore":
         ignored_test = True
 
     # execute command for test file
@@ -309,8 +308,8 @@ for test_filename in filenames:
 
 print_verbose(args["verbose"], "")
 print("Total " + str(totalcount) + ": " +
-    str(totalcount-count["fail"]-count["invalid"]-count["ignore"]) +  " passed, " +
-    red_if_non_zero(count["fail"], " failed") + ", " + str(count["invalid"]+count["ignore"]) + " ignored.")
+    str(totalcount-count["fail"]-count["ignore"]) +  " passed, " +
+    red_if_non_zero(count["fail"], " failed") + ", " + str(count["ignore"]) +  " ignored.")
 
 if count["fail"] > 0:
     exit(1)

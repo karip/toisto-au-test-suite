@@ -3,7 +3,7 @@
         "description": "File and header size too small: 27 bytes",
         "notes": "QuickTime Player 10.5 can play this file. audioconvert can handle this file."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 1,

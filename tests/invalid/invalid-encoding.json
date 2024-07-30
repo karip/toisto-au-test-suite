@@ -3,7 +3,7 @@
         "description": "Invalid encoding value: 0x0BADBADE",
         "notes": "QuickTime Player 10.5 can't play this file."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 1,

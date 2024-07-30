@@ -16,10 +16,10 @@ and python sunau is available in Python versions less than 3.13.
     clang++ ... # see audiotoolbox-au-tester.mm for compilation instructions
     cd ..
     python3 toisto-runner.py -v tools/audiotoolbox-au-tester
-    # Total 89: 50 passed, 18 failed, 21 invalid, 0 ignored.
+    # Total 89: 50 passed, 18 failed, 21 ignored.
 
     python3 toisto-runner.py -v tools/python3-au-tester.py
-    # Total 89: 43 passed, 25 failed, 21 invalid, 0 ignored.
+    # Total 89: 43 passed, 25 failed, 21 ignored.
 
 [The results for macOS 14.4 AudioToolBox](result-audiotoolbox-au-tester.md)
 running audiotoolbox-au-tester.
@@ -33,7 +33,8 @@ The test files are under the `tests` folder. The folder contains subfolders:
  - `invalid` - contains invalid AU files
 
 The `invalid` folder contains invalid AU files. The readers may or may not read them,
-but hopefully they won't crash reading them.
+but hopefully they won't crash reading them. All files in the `invalid` folder have
+been marked to be ignored in the results.
 
 Note: Some apps (Audacity and QuickTime Player 7) export only a 24-byte header, but
 the [spec](https://docs.oracle.com/cd/E36784_01/html/E36882/au-4.html) says that
@@ -53,8 +54,7 @@ the audio file. The properties in the json file are:
    - `version` - version of the software
    - `platform` - platform used to run the software ("macOS 12.4" / "Windows 7" ..)
    - `command` - command line tool and its arguments used to create the file
- - `result` - the test is a normal test if this is missing, `ignore` to ignore the test,
-              `invalid` if the test file is an invalid file
+ - `result` - the test is a normal test if this field is missing, `ignore` to ignore the test
  - `format` - always `au`
  - `sampleRate` - sample rate
  - `channels` - number of channels

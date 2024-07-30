@@ -3,7 +3,7 @@
         "description": "Invalid offset pointing to 0x80000000",
         "notes": "QuickTime Player 10.5 plays this file with silence."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 1,

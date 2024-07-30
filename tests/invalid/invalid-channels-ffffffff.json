@@ -3,7 +3,7 @@
         "description": "Channels set to 0xffffffff",
         "notes": "QuickTime Player 10.5 can't play this file."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 4294967295,

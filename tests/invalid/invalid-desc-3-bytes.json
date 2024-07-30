@@ -3,7 +3,7 @@
         "description": "Too short description field containing only 3 non-zero bytes",
         "notes": "QuickTime Player 10.5 can play this file."
     },
-    "result": "invalid",
+    "result": "ignore",
     "format": "au",
     "sampleRate": 44100,
     "channels": 1,
