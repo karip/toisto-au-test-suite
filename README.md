@@ -21,8 +21,8 @@ and python sunau is available in Python versions less than 3.13.
     python3 toisto-runner.py -v tools/python3-au-tester.py
     # Total 89: 43 passed, 25 failed, 21 ignored.
 
-[The results for macOS 14.4 AudioToolBox](result-audiotoolbox-au-tester.md)
-running audiotoolbox-au-tester.
+[The results for macOS 14.4 AudioToolBox](result-audiotoolbox-au-tester.md) running
+`audiotoolbox-au-tester`.
 
 ## Test cases
 
@@ -54,7 +54,7 @@ the audio file. The properties in the json file are:
    - `version` - version of the software
    - `platform` - platform used to run the software ("macOS 12.4" / "Windows 7" ..)
    - `command` - command line tool and its arguments used to create the file
- - `result` - the test is a normal test if this field is missing, `ignore` to ignore the test
+ - `result` - `ignore` to ignore the test in the results
  - `format` - always `au`
  - `sampleRate` - sample rate
  - `channels` - number of channels
@@ -72,9 +72,9 @@ the audio file. The properties in the json file are:
 
 See [reftemplate.json](reftemplate.json) for examples for all the fields.
 
-toisto-runner.py will compare each of these fields (except testinfo) against
+`toisto-runner.py` compares each of these fields (except `testinfo`) against
 the values returned by the command. If the fields match, the test passes.
-If the command returns "-unsupported-", it means that the field is not
+If the command returns `"-unsupported-"`, it means that the field is not
 supported by the command and it won't affect the result of the test.
 
 ## Reference sample data
